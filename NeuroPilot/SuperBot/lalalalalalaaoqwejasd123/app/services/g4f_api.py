@@ -1,0 +1,33 @@
+# -*- coding: utf-8 -*-
+"""
+Оптимизированный G4F API для максимальной скорости ответов
+Поддержка датасетов bigcode/the-stack и laion/relaion-high-resolution
+"""
+
+# Импортируем оптимизированную версию
+from app.services.g4f_api_optimized import ultra_fast_g4f, UltraFastG4F
+
+# Сохраняем обратную совместимость
+class G4FAPI:
+    """Обратно-совместимый API wrapper"""
+    
+    def __init__(self):
+        self.ultra_fast = ultra_fast_g4f
+        self.max_tokens = 1000
+    
+    async def generate_text(self, prompt: str, system_prompt: str = None) -> str:
+        """Обратно-совместимый метод генерации"""
+        # Используем errorer v1 identity по умолчанию
+        if not system_prompt:
+            system_prompt = self.ultra_fast.russian_system_prompt
+        return await self.ultra_fast.generate_text(prompt, system_prompt)
+    
+    async def test_speed(self):
+        """Тест скорости провайдеров"""
+        return await self.ultra_fast.test_speed()
+
+# Создаем экземпляры для совместимости
+g4f_api_service = G4FAPI()
+
+# Экспортируем все нужные классы
+__all__ = ['g4f_api_service', 'G4FAPI', 'UltraFastG4F']
