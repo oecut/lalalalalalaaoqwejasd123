@@ -1,4 +1,3 @@
-
 name: Build CyberGram APK
 
 on:
@@ -81,4 +80,4 @@ jobs:
           Commit: ${{ github.sha }}
           Branch: ${{ github.ref }}
           Download from: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
-        document: TMessagesProj_AppStandalone/build/outputs/apk/standalone/app.a
+        document: TMessagesProj_AppStandalone/build/outputs/apk/standalone/app-standalone.apk
