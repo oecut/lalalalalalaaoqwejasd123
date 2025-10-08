@@ -1,0 +1,25 @@
+[agent]
+expertMode = true
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Build Instructions"
+
+[[workflows.workflow]]
+name = "Build Instructions"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "./build_instructions.sh"
+
+[workflows.workflow.metadata]
+outputType = "console"
